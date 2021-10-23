@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Profile{% endblock title %}
+{% block some %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-3">
+
+        <form method="POST" action="/accounts/profile/" enctype= "multipart/form-data">
+                {% csrf_token %}
+            <fieldset class="form-group">
+                {{form|crispy}}
+                <br>
+<button class="btn-outline info" type="submit">Update</button>
+        </fieldset><br>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock some %}
+

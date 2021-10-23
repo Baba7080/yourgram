@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Profile{% endblock title %}
+{% block some %}
+<div class="container">
+<div class="row">
+<div class='col-6'>
+<div>
+{% for i in postii %}
+    <div class='card'>
+
+        <img src="{{i.image.url}}" class="card-img-top  img-fluid img-centered img-responsive" style="height:400px;width:500px">
+
+
+        <br>{{i.title}}<br>
+        <p>{{i.content}}</p>
+        {{i.author}}--
+
+    </div>
+{% endfor %}
+
+</div>
+</div>
+
+<div class="col-6">
+<h2>Update This Post.....!</h2>
+
+        <div class="col-sm-5">
+        
+        <form method='POST'  enctype= "multipart/form-data">
+            {% csrf_token %}
+            {{product|crispy}}
+            <button type="submit">submit</button>
+        </form>
+        
+        </div>
+    </div>
+    
+</div> 
+</div>
+
+</div>
+{% endblock some %}
+

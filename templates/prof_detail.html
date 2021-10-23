@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Post Detail{% endblock title %}
+{% block some %}
+<!----modal----->
+
+
+
+
+
+<div class="container">
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-2">
+        <article class="media">
+
+          <div class="media-left">
+              <figure class="image is-256x256">
+                        <img class="rounded-circle account-img mt-4" src="{{ object.user.profile.image.url }}" alt="piic" style="height: 120px; width: 130px;">&nbsp;
+              </figure>
+          </div>
+          
+      </div>
+          <div class="col-3 mt-3"><br><br>
+              <strong> @{{object.user}}</strong>&nbsp;&nbsp;<button type="submit">Follow</button>
+              {% comment %} <h6>{{num_post}} posts &nbsp;&nbsp; following &nbsp;&nbsp; follower {% endcomment %}
+            
+              {% comment %} <img class="is-rounded" src="{{ request.user.profile.url }}">
+              <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png"> {% endcomment %}
+
+          <br><small>{{object.First_Name}} {{object.Second_Name}}--{{object.bio}}</small><br>
+          <div>{{object.bio}}</div>
+          </div>
+ <div class="col-md-4">
+ ss
+ 
+ </div>
+</div>
+</div>
+  </div>
+  <hr>
+
+<div class="container">
+    <div class="row">
+      <div class="col-12"><br><h3><center>Post is Unavailable.Private Account</center></h3>
+      <br><br><br>
+      </div>
+      {% comment %} <div class="col-4"></div>
+      <div class="col-4"></div> {% endcomment %}
+  </div>
+  </div><hr>
+
+  
+                     
+          
+
+              
+                {% comment %} <br>{{request.user.profile.bio}} {% endcomment %}
+ 
+
+  {% endblock some %}
+{% block scripts %}
+<script type="text/javascript" src={% static 'main.js' %}></script>
+{% endblock scripts %} 
+

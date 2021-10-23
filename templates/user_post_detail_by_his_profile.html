@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Profile{% endblock title %}
+{% block some %}
+<div>
+{% for i in postii %}
+    <div class='card'>
+    <center>
+    
+        <img src="{{i.image.url}}" class="card-img-top  img-fluid img-centered img-responsive" style="height:400px;width:500px">
+           <a href="{% url 'update_post' i.pk %}"> <input type='submit' class='btn btn-lg btn-danger' value='Update'></a><br>
+    {% comment %}---- --form to  delete the post by the user --------- {% endcomment %}
+           
+           <form method='POST'>
+                {% csrf_token %}
+    
+                <input type='submit' class='btn btn-lg btn-danger' value='Delete'>
+          </form>
+
+
+        <br>{{i.title}}<br>
+        <p>{{i.content}}</p>
+    </center>
+    </div>
+{% endfor %}
+
+</div>
+{% endblock some %}

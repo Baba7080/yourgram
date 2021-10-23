@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Profile{% endblock title %}
+{% block some %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-3">
+            {% comment %} <form method ='POST' enctype='multipart/form'> {% endcomment %}
+            {% comment %} <form action="" method="POST" class='ui form' enctype="multipart/form-data"> {% endcomment %}
+  <form method = 'POST' enctype= "multipart/form-data">
+
+                {% csrf_token %}
+            <fieldset class="form-group">
+                {{p_form|crispy}}
+            {% comment %} <button type='submit' name="submit_p_form" class="ui positive button w-full mt-5">Send</button> {% endcomment %}
+<button class="btn-outline info" type="submit">Update</button>
+        {% comment %} <button class="btn-outline info" type="submit">Update</button> {% endcomment %}
+                
+                {% comment %} {% csrf_token %}
+                {{p_form}} {% endcomment %}
+            {% comment %} </form> {% endcomment %}
+                {% comment %} {{school_pic_form|crispy}} {% endcomment %}
+
+
+        </fieldset><br>
+        {% comment %} <button class="btn-outline info" type="submit">Update</button> {% endcomment %}
+
+     </form>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock some %}
+

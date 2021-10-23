@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Post Detail{% endblock title %}
+{% block some %}
+<div class="container">
+                    <div class="container ">
+                        <div class="row mx-auto my-5">
+                            <div class="col-6">
+                                    {% for i in prof %}
+                                        <img class="rounded-circle account-img mt-2" src="{{ i.user.profile.image.url }}" alt="piic" style="height: 50px; width: 60px;">
+                                        <a href="{% url 'profiled' i.pk %}">{{i.user}}</a>-<br>
+                                        <br>
+                                        <hr>
+                                    {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+{% endblock %}

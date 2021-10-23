@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Post Detail{% endblock title %}
+{% block some %}
+
+<div class="container">
+        <div class="row">
+        <hr>
+        {% comment %} {%if request.user == stori.story_user%}
+        <h1>yes</h1>
+        {%else%}
+        <h1>No</h1>
+        {%endif%} {% endcomment %}
+        {% comment %} {% if messages %}
+          <ul class="messages">
+              {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        
+              {% endfor %}
+          </ul>
+        {% endif %} 
+        {% if b == True %}
+          Yupp
+
+        {% endif %} {% endcomment %}
+        <form method='POST'>
+          {% csrf_token %}
+          {% for i in story_detail %}
+          {% if request.user == i.story_user %}
+            <input type='submit' class='btn btn-lg btn-danger' value='Delete'>
+          {% else %}
+            {{i.story_user}}
+          {% endif %}
+        {% endfor %}
+          </form>
+        {% for i in story_detail %}
+          
+        <center>
+            <div class="col-12"><img src="{{i.image.url}}" class="card-img-top img-thumbnail" style="height:350px;width:500px"><br></div>
+        </center>
+
+          {% endfor %}
+        </div>
+        <div class="col-4"></div>
+</div>
+
+{% endblock some %}

@@ -1,0 +1,163 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+        <!-- NORMALIZE CSS -->
+    <link rel="stylesheet" href="../_theme-styles/normalize.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- PROJECT THEME CSS -->
+    <link rel="stylesheet" href="../_theme-styles/theme.css">
+
+
+    <link rel="stylesheet" href="{% static 'sandbox.css'%}">
+
+<link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans|Nova+Mono|Roboto+Condensed" rel="stylesheet">
+  </head>
+  <body>
+        <style>
+            body {
+            font-family: "Roboto", sans-serif;
+            font-size: 17px;
+            background-color: #fdfdfd;
+        }
+        .shadow {
+            box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.1);
+        }
+        .image img.is-rounded {
+          border-radius: 290486px;
+        }
+        .containe{
+          
+          display:flex;
+          flex:20%;
+        }
+        .btn-danger {
+            color: #fff;
+            background-color: #f00000;
+            border-color: #dc281e;
+        }
+        .cen{
+          {% comment %} display:flex; {% endcomment %}
+          margin-right: 600px;
+        }
+        .masthead {
+            background: #3398E1;
+            height: auto;
+            padding-bottom: 15px;
+            box-shadow: 0 16px 48px #E3E7EB;
+            padding-top: 10px;
+        }
+    </style>
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mx-4">
+<div class="containe">
+  <div class="container-fluid">
+  <div class="text-center">
+  <p class="font-italic">
+          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/instagram.png" style="height: 40px; width: 50px;">
+
+  {% comment %} <div class="text-center" style="font-italic"> {% endcomment %}
+    YourGram</div>
+    </p>
+    </div>
+    </div>
+    
+    {% comment %} <div class="collapse navbar-collapse" id="navbarNav"> {% endcomment %}
+
+    <form class="cen" >
+    
+      <input class="form-control mt-2 mx-5 lg-2" type="search" placeholder=" &nbsp;&nbsp; Search &nbsp;&nbsp;" aria-label="Search">
+      {% comment %} <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> {% endcomment %}
+    </form>
+    </div>
+        {% if request.user.is_authenticated %}
+            <div class="mx-5 mt-1">
+                    <a class="nav-link text-white" href="{% url 'profilev' %}" role="button" >
+                        {{request.user.username|capfirst}}
+                    </a>
+                   
+            </div>
+        {% endif %}
+        {% comment %} {% else %}
+          {{LoginRedirect}} {% endcomment %}
+        {% comment %} 
+        {% else %}
+              <li>
+                <a class="nav-link dropdown-toggle text-white" href="{% url 'login' %}" id="electronicsDropdown" role="button"   aria-expanded="false">
+                  Login
+                </a>
+
+              </li>
+
+              <li >
+                <a class="nav-link dropdown-toggle text-white" href="{% url 'registration' %}" id="electronicsDropdown" role="button"  aria-expanded="false">
+                  Registration
+                </a>
+}
+              </li>
+                
+        {% endif %} {% endcomment %}
+       
+      </ul>
+    {% comment %} </div> {% endcomment %}
+  
+</nav>
+
+            
+
+    {% block post %} {% endblock post %}
+    {% block sugestion %}
+    {% block scripts %}
+    {% endblock scripts %}
+    <style>
+        .card{
+                box-shadow: 0 16px 48px #E3E7EB;
+            }
+        
+    </style>
+
+    <!-- Sidebar Widgets Column -->
+    {% comment %} <div class="col-md-4 float-right ">
+    <div class="card my-4">
+            <h5 class="card-header">About Us</h5>
+        <div class="card-body">
+            <p class="card-text"> This awesome blog is made on the top of our Favourite full stack Framework 'Django', follow up the tutorial to learn how we made it..!</p>
+            <a href="https://djangocentral.com/building-a-blog-application-with-django"
+            class="btn btn-danger">Know more!</a>
+        </div>
+    </div>
+</div> {% endcomment %}
+
+     {% endblock sugestion %}
+
+    {% block some %} {% endblock some %}
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src={% static 'main.js' %}></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+
+
+
+    
+  </body>
+</html>

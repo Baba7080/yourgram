@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Address{% endblock title %}
+{% block some %}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<div class="container">
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-2">
+        <article class="media">
+
+          <div class="media-left">
+              <figure class="image is-256x256">
+                      <img class="rounded-circle account-img mt-5" src="{{ request.user.profile.image.url }}" alt="piic" style="height: 150px; width: 150px;">
+              </figure>
+          </div>
+          </div>
+          <div class="col-3 col-md-6 col-sm-4 mt-3 mx-auto text-auto"><br><br>
+            {% if user.is_authenticated %}
+                  <strong>{{request.user.username}}</strong>&nbsp;&nbsp;<small><a href="{% url 'profile_pic_update' %}">Edit Profile</a>&nbsp;&nbsp;</small><i class="fas fa-settings"></i>
+                    &nbsp;<h6>{{num_post}} posts&nbsp;&nbsp;  following &nbsp;&nbsp; follower
+                    <br><br>&nbsp;&nbsp;<small class="boot mt-8">{{request.user.profile.First_Name}}{{request.user.profile.Second_Name}}</small> <br>
+              
+                <br>{{request.user.profile.bio}}
+                </div>
+    
+              <div class="media-content">
+
+              <div class="content">
+                {% comment %} <h1 style="font-weight: bold;" class="title is-1">{% if profile.first_name %}{{ profile.first_name }} {{ profile.last_name }} {% endif %}</h1>
+                <h2 class="subtitle is-3">@{{ profile.user }}</h2> {% endcomment %}
+
+              
+              <hr>
+              {% comment %} <div class="container">
+                <div class="row">
+                  <div class="col-3">
+                    <a href="{% url 'profile_pic_update' %}">Update</a>
+                  </div>
+                  <div class="col-3">Followers..<br></div>
+                  <div class="col-3">Following.</div>
+                  <div class="col-3"></div>
+                    
+                </div>
+
+              </div> {% endcomment %}
+          {% endif  %} 
+              </div> 
+
+            </div>
+
+
+        {% comment %} {% if user.is_authenticated and user == profile.user %}
+          <a href="{% url 'edit-profile' %}" class="button">Edit profile</a>
+        {% endif %}  {% endcomment %}
+
+        </div>
+        
+        <div class="col-3"></div>
+        </div>
+
+        </article>
+  </div>
+</div>
+
+  <div class="container mt-5 mb-5">
+          <div class="row">
+          <div class="col-12"></div>
+          </div>
+  </div>
+
+{% comment %}  ----------User images that  he/she posted   ------------ {% endcomment %}
+<div class="container">
+        <div class="row">
+        <hr>
+
+          {% for i in pst %}
+            <div class="col-4"><a href="{% url 'perform_on_post' i.pk %}"><img src="{{i.image.url}}" class="card-img-top img-thumbnail" style="height:350px;width:500px"></a><br></div>
+          {% endfor %}
+        </div>
+        <div class="col-4"></div>
+</div>
+
+{% endblock some %}

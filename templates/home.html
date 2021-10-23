@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block post %}
+    <style>
+    body {
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+        background-color: #fdfdfd;
+    }
+    .sidenav {
+        position: fixed;
+        /*background-color: #111; */
+        float:right;
+     /* Stay on top */
+        {% comment %} top: auto; {% endcomment %}
+          /*Stay at the top */
+        
+        
+    
+    }
+    .head_text {
+        color: white;
+    }
+    .card {
+        box-shadow: 0 16px 48px #E3E7EB;
+    } 
+    
+</style>
+<div class="container">
+<header class="masthead">
+    <div class="container mx-auto">
+        <div class="row">
+            {% for i in status %}
+            <div class="col-lg-1 col-md-4  col-sm-4 ">
+                <div class="site-heading">
+                
+                    <a href="{% url 'view_story' i.pk %}"><img class="rounded-circle account-img image-fluid mt-4" src="{{ i.image.url }}" alt="piic" style="height: 70px; width: 70px;"></a><p class="card-text text-muted h6"> {{i.story_user}}</p>
+                
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+</header>
+
+
+</div>
+
+
+<div class="container-fluid">
+    <div class="row mx-5">
+            <!-- Blog Entries Column -->
+        <div class="col-6 mt-3 left">
+            {% for post in queryset %}
+                <div class="card mb-0">
+                
+                    <div class="card-body">
+                    
+                    <img class="rounded-circle account-img image-fluid mt-0" src="{{ post.author.profile.image.url }}" alt="piic" style="height: 60px; width: 60px;">&nbsp;&nbsp;&nbsp; &nbsp;{{ post.author }}<br>
+                    {% comment %} <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p> {% endcomment %}
+                    <br>
+                    <img src="{{post.image.url}}" class="card-img-top img-thumbnail image-fluid" style="height:400px;width:600px">
+                        <h2 class="card-title">{{ post.title }}</h2>
+                        
+                        <p class="card-text">{{post.content|slice:":200" }}</p>
+                        <a href="{% url 'post_detail' post.id  %}">Read More</a>
+                        <form action="{% url 'like-post' %}" method='POST' class="ui form">
+                        {% csrf_token %}
+                        <input type='hidden' name='post_id' value="{{post.id}}">
+                        {% if user not in post.liked.all %}
+                            <button class="ui button positive" type='submit'>Like</button>
+                           {% comment %} <button class="ui button position" type='submit'> <img src="https://img.icons8.com/bubbles/100/000000/heart.png" style="height: 50px; width: 50px;"></button> {% endcomment %}
+
+                        
+                        {% else %}
+                            <button class="ui button negative" type='submit'>Unlike</button>
+
+                        {% endif %}
+                        </form>
+                        <strong>{{post.liked.all.count}}Likes</strong>
+
+                    </div>
+                </div>
+                <br>
+                {% endfor %}
+        </div>
+
+    {% comment %} --------------------------------side bar--------------------------side bar ----------------------------- {% endcomment %}
+        
+        
+        <div class="col-6 mt-0 mx-auto">
+            {% comment %} <div class="sidenav"> {% endcomment %}
+            <div  style="position:fixed;">
+                <div class="card ">
+                    <div class="container">
+                            <div class="col-4 text-center text-fluid">
+
+                                <a href="{% url 'profilev' %}"><img class="rounded-circle account-img mt-2" src="{{ request.user.profile.image.url }}" alt="piic" style="height: 90px; width: 100px;"></a>
+                            </div>
+                             &nbsp;&nbsp;&nbsp;
+                            <div class="mt-0 text-center ">{{request.user}}<br><h6 class="text-fluid">{{request.user.profile.First_Name}}&nbsp;{{request.user.profile.Second_Name}}<h6></div>
+                           <a href="{% url 'newpost' %}">Post</a></h6>
+                    </div>
+                </div>
+                    
+                        <div class="card mt-1">
+                                    <h6>Suggestions For You &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<a href="{% url 'see_all' %}">See All
+                                    </h6>
+                        </div>
+                                <br>
+                                <hr>
+                                {% for pro in prof %}
+                        <div>
+                                    <img class="rounded-circle account-img image-fluid mt-1" src="{{ pro.user.profile.image.url }}" alt="piic" style="height: 50px; width: 50px;"> &nbsp;&nbsp;&nbsp;<a href="{% url 'profiled' pro.pk %}">{{pro.user}}</a>
+                        <hr>
+                        </div>
+                                {% endfor %} 
+                                <ul class="pagination justify-content-end">
+                                    <li class="page-item"><a href="{% url 'see_all' %}">see all</a></li>
+                                </ul>
+                        </div>
+                </div>
+
+            </div>
+            {% comment %} </div> {% endcomment %}
+            
+        </div>
+
+    </div>
+
+</div>
+    
+
+
+  </body>
+ {% endblock post %}
