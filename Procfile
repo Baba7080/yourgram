@@ -1,0 +1,1 @@
+web: gunicorn yourgram.wsgi --log-file -
